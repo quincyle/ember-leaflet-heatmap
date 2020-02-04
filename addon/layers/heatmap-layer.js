@@ -120,7 +120,7 @@ if (typeof FastBoot === 'undefined') {
       this._data.data.forEach((datapoint) => {
         const value = get(datapoint, valueField);
         const latlng = get(datapoint, 'latlng');
-        const radius = data.radius ? data.radius * radiusMultiplier : (this.cfg.radius || 2) * radiusMultiplier;
+        const radius = datapoint.radius ? datapoint.radius * radiusMultiplier : (this.cfg.radius || 2) * radiusMultiplier;
 
         const mapSize = this._map.getSize();
         const mapPadding = radius / Math.min(mapSize.x, mapSize.y);
@@ -176,7 +176,8 @@ if (typeof FastBoot === 'undefined') {
 
         return {
           latlng: new L.LatLng(lat, lng),
-          [valueField]: value
+          [valueField]: value,
+          radius: point.radius
         };
 
       });
