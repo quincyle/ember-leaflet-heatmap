@@ -18,6 +18,10 @@ export default EmberLeafletBaseLayer.extend({
   didCreateLayer() {
     get(this, '_layer').updateData(get(this, 'data'));
 
+    this.addObserver('options', () => {
+      this._layer._heatmap.configure(this.options)
+    })
+
     this.setDataObservers();
 
   },
